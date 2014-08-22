@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsServer", "PhysicsServer\PhysicsServer\PhysicsServer.csproj", "{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "PhysicsServerContent", "PhysicsServer\PhysicsServerContent\PhysicsServerContent.contentproj", "{30DABB40-A407-4F51-955D-236324151C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics", "..\..\..\..\Downloads\Henge3D_201011\Physics\Physics.csproj", "{888DC669-1E80-4AFD-895B-4B6A0751A07C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipeline", "..\..\..\..\Downloads\Henge3D_201011\Pipeline\Pipeline.csproj", "{3086E95C-5A76-4E06-A494-F61C2B71FEA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Debug|x86.ActiveCfg = Debug|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Debug|x86.Build.0 = Debug|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Release|Any CPU.ActiveCfg = Release|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Release|x86.ActiveCfg = Release|x86
+		{0B33BB00-001D-45AC-A1B8-88F53F61EA2F}.Release|x86.Build.0 = Release|x86
+		{30DABB40-A407-4F51-955D-236324151C3B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{30DABB40-A407-4F51-955D-236324151C3B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{30DABB40-A407-4F51-955D-236324151C3B}.Debug|x86.ActiveCfg = Debug|x86
+		{30DABB40-A407-4F51-955D-236324151C3B}.Release|Any CPU.ActiveCfg = Release|x86
+		{30DABB40-A407-4F51-955D-236324151C3B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{30DABB40-A407-4F51-955D-236324151C3B}.Release|x86.ActiveCfg = Release|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Debug|x86.ActiveCfg = Debug|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Debug|x86.Build.0 = Debug|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Release|Any CPU.ActiveCfg = Release|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Release|x86.ActiveCfg = Release|x86
+		{888DC669-1E80-4AFD-895B-4B6A0751A07C}.Release|x86.Build.0 = Release|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Debug|Any CPU.Build.0 = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Debug|x86.ActiveCfg = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Debug|x86.Build.0 = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Release|Any CPU.ActiveCfg = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Release|Any CPU.Build.0 = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Release|Mixed Platforms.ActiveCfg = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Release|Mixed Platforms.Build.0 = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Release|x86.ActiveCfg = Debug|x86
+		{3086E95C-5A76-4E06-A494-F61C2B71FEA2}.Release|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
