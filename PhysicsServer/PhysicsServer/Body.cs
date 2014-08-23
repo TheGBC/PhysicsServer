@@ -9,19 +9,23 @@ using Henge3D.Pipeline;
 
 namespace PhysicsServer {
   public class Body : RigidBody {
-    private string tag = "";
-
     private Model _model;
     private string _tag;
+    private int _player;
 
-    public Body(Game game, Model model, string tag)
+    public Body(Game game, Model model, string tag, int player = -1)
       : base((RigidBodyModel)model.Tag) {
       _model = model;
       _tag = tag;
+      _player = player;
+    }
+
+    public int Player() {
+      return _player;
     }
 
     public string Tag() {
-      return tag;
+      return _tag;
     }
 
     public string Matrix(bool add) {

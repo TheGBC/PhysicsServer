@@ -30,7 +30,8 @@ namespace PhysicsServer {
     bool ENABLE_PHYSICS = true;
     string MODEL = "wall-model-small";
 
-    int score = 0;
+    int blue = 0;
+    int red = 0;
 
     // Transform from physics coordinate space to world coordinate space
     Matrix Tpw = Matrix.CreateScale(.1f)
@@ -58,7 +59,7 @@ namespace PhysicsServer {
     Body cupTopBody;
     Body cupBottomBody;
 
-    List<Body> balls = new List<Body>();
+    List<List<Body>> balls = new List<List<Body>>();
     private object ballLock = new object();
     private string ballString = "";
 
@@ -107,7 +108,8 @@ namespace PhysicsServer {
         transformAndAdd(cupBottomBody, physics);
         physics.Gravity = new Vector3(0, -9.8f, 0);
       }
-
+      balls.Add(new List<Body>());
+      balls.Add(new List<Body>());
       new Thread(new ThreadStart(tcp1)).Start();
       new Thread(new ThreadStart(tcp2)).Start();
     }
@@ -125,15 +127,17 @@ namespace PhysicsServer {
     }
 
     private bool OnCollide(RigidBody b1, RigidBody b2) {
-      Body body1 = b1 as Body;
-      Body body2 = b2 as Body;
+      Body body = b2 as Body;
 
-      if (body1.Tag() == "cup_bottom" && body2.Tag() == "sphere") {
-        physics.Remove(body2);
-        score++;
-      } else if (body2.Tag() == "cup_bottom" && body1.Tag() == "sphere") {
-        physics.Remove(body1);
-        score++;
+      Console.WriteLine("CONTACT " + body.Tag() + " " + String.Equals(body.Tag(), "sphere"));
+      if (String.Equals(body.Tag(), "sphere")) {
+        Console.WriteLine(body.Player());
+        if (body.Player() == 0) {
+          blue++;
+        } else if (body.Player() == 1) {
+          red++;
+        }
+        physics.Remove(body);
       }
       return false;
     }
@@ -187,7 +191,7 @@ namespace PhysicsServer {
         }
 
         Monitor.Enter(ballLock);
-        writer.WriteLine(ballString);
+        writer.WriteLine(blue + "*" + red + "*" + ballString);
         writer.Flush();
         Monitor.Exit(ballLock);
       }
@@ -195,10 +199,15 @@ namespace PhysicsServer {
 
     private string serializeBallsToString() {
       StringBuilder builder = new StringBuilder();
-      for (int i = 0; i < balls.Count; i++) {
-        builder.Append(balls[i].Matrix(i != 0));
-        if (i < balls.Count - 1) {
-          builder.Append("|");
+      for (int ind = 0; ind < balls.Count; ind++) {
+        for (int i = 0; i < balls[ind].Count; i++) {
+          builder.Append(balls[ind][i].Matrix(i != 0));
+          if (i < balls[ind].Count - 1) {
+            builder.Append("|");
+          }
+        }
+        if (ind < balls.Count - 1) {
+          builder.Append("*");
         }
       }
       return builder.ToString();
@@ -206,12 +215,13 @@ namespace PhysicsServer {
 
     private void addBall(string data) {
       String[] parts = data.Split(',');
-      Vector3 translation = new Vector3(float.Parse(parts[0]), float.Parse(parts[1]), float.Parse(parts[2]));
-      float mag = float.Parse(parts[3]);
-      float xAngle = float.Parse(parts[4]);
-      float yAngle = float.Parse(parts[5]);
+      int ind = int.Parse(parts[0]);
+      Vector3 translation = new Vector3(float.Parse(parts[1]), float.Parse(parts[2]) + .2f, float.Parse(parts[3]));
+      float mag = float.Parse(parts[4]);
+      float xAngle = float.Parse(parts[5]) + (float)(Math.PI / 9);
+      float yAngle = float.Parse(parts[6]);
 
-      Body body = new Body(this, sphere, "sphere");
+      Body body = new Body(this, sphere, "sphere", ind);
       body.SetWorld(translation);
 
       float xVel = mag * (float)(Math.Sin(yAngle) * Math.Sin(xAngle - Math.PI / 2));
@@ -222,9 +232,14 @@ namespace PhysicsServer {
       for (int i = 0; i < body.Skin.Count; i++) {
         body.Skin.SetMaterial(body.Skin[i], new Material(.8f, .5f));
       }
-      body.OnCollision += OnCollide;
       physics.Add(body);
-      balls.Add(body);
+      balls[ind].Add(body);
+
+      if (balls[ind].Count > 50) {
+        Body toRemove = balls[ind][0];
+        balls[ind].RemoveAt(0);
+        physics.Remove(toRemove);
+      }
     }
 
     protected override void Draw(GameTime gameTime) {
