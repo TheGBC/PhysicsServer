@@ -33,6 +33,9 @@ namespace PhysicsServer {
     int blue = 0;
     int red = 0;
 
+    bool resetBlue = false;
+    bool resetRed = false;
+
     // Transform from physics coordinate space to world coordinate space
     Matrix Tpw = Matrix.CreateScale(.1f)
       * Matrix.CreateFromYawPitchRoll(
@@ -161,7 +164,15 @@ namespace PhysicsServer {
         this.Exit();
       Monitor.Enter(ballLock);
       ballString = serializeBallsToString();
+      if (Keyboard.GetState().IsKeyDown(Keys.D1)) {
+        resetBlue = true;
+      }
+      if (Keyboard.GetState().IsKeyDown(Keys.D2)) {
+        resetRed = true;
+      }
       Monitor.Exit(ballLock);
+
+
       base.Update(gameTime);
     }
 
@@ -191,7 +202,9 @@ namespace PhysicsServer {
         }
 
         Monitor.Enter(ballLock);
-        writer.WriteLine(blue + "*" + red + "*" + ballString);
+        writer.WriteLine((resetBlue ? 1 : 0) + "*"  + (resetRed ? 1 : 0) + "*" + blue + "*" + red + "*" + ballString);
+        resetBlue = false;
+        resetRed = false;
         writer.Flush();
         Monitor.Exit(ballLock);
       }
